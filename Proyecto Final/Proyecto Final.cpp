@@ -188,15 +188,14 @@ int main()
 			cout << "ELIGIO AGREGAR NODO" << endl;
 			cout << "Digite un numero" << endl;
 			cin >> n;
-			agregarPila(pila, n);
-			agregarPila2(pilatemp, n);
-			dim = dim + 1;
+			agregarPila(pila, n);								//Se agrega elemento a la pila
+			agregarPila2(pilatemp, n);							//Se agrega elemento a pila temporal
+			dim = dim + 1;										//Aumenta dimension de la pila
 
-			if (reentry == true && change == true)
+			if (reentry == true && change == true)				//Si ya se salio del submenu y realizo un cambio, se cambia a falso el bool de proceso que esta mas abajo
 			{
 				procesoDone = false;
 			}
-
 			system("pause");
 			break;
 
@@ -208,11 +207,11 @@ int main()
 			}
 			else
 			{
-				dim = dim - 1;
-				eliminarNodo(pila, n);
-				eliminarNodo(pilatemp, n);
+				dim = dim - 1;											//Disminuye la dimension de la pila
+				eliminarNodo(pila, n);									//Se elimina elemento de la pila
+				eliminarNodo(pilatemp, n);								//Se elimina elemento de la pila temporal
 				cout << "Nodo eliminado" << endl;
-				change = true;
+				change = true;											//Se realizo un cambio entonces cambio es verdadero
 			}
 			system("pause");
 			break;
@@ -232,7 +231,7 @@ int main()
 					cout << "*************************************" << endl;
 					cout << "ELIJA OPCION SUBMENU ";
 
-					if (procesoDone != true)
+					if (procesoDone != true)						//Si ya se generaron los arrays entonces ya no se vuelve a realizar este proceso
 					{
 						dim2 = dim;									//Definiendo dimensiones 
 						dim3 = dim;
@@ -258,12 +257,12 @@ int main()
 							arr6[i] = arr[i];
 						}
 
-						if (reentry == true && change == true)
+						if (reentry == true && change == true)			//Si ya se ha salido de el submenu y se ha realizado un cambio entonces las condiciones de las pilas es falsa y se vuelve a realizar todo el proceso
 						{
 							repetidoDone = false, mostrarOriginalDone = false, parDone = false, imparDone = false, posDone = false, negDone = false;
 						}
 
-						procesoDone = true;
+						procesoDone = true;								//Ya se realizo este proceso entonces se hace verdadero para que no vuelva a correr
 					}
 
 					cin >> y;
@@ -273,9 +272,9 @@ int main()
 					case 1:
 						cout << "ELIGIO VER PILA ORIGINAL" << endl;
 
-						if (mostrarOriginalDone == true)
-						{
-							for (int i = 0; i < dim; i++)					//Depositar array en pila
+						if (mostrarOriginalDone == true)					//Si ya se realizo el proceso de general la pila entonces se hace un procedimiento 
+						{													//de solo volver a depositar el array ya generado en la pila y se muestra
+							for (int i = 0; i < dim; i++)			//Depositar array en pila
 							{
 								depositarPilaOriginal(pilatemp2, arr[i]);
 							}
@@ -329,7 +328,7 @@ int main()
 								}
 							}
 
-							mostrarOriginalDone = true;
+							mostrarOriginalDone = true;				//Ya se genero la pila entonces el bool se hace verdadero
 						}
 						system("pause");
 						break;
@@ -337,8 +336,8 @@ int main()
 					case 2:
 						cout << "ELIGIO VER PILA SIN NUMEROS REPETIDOS" << endl;
 
-						if (repetidoDone == true)
-						{
+						if (repetidoDone == true)								//Si ya se realizo el proceso de general la pila entonces se hace un procedimiento 
+						{														//de solo volver a depositar el array ya generado en la pila y se muestra
 							for (int i = 0; i < dim_aux; i++)					//Volver a depositar array en pila
 							{
 								pilaNoRepetidos(pila2, arr_aux2[i]);
