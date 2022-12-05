@@ -35,7 +35,7 @@ void agregarPila2(Nodo*& pila, int n) {
 	nuevo_nodo->dato = n;
 	nuevo_nodo->siguiente = pila;
 	pila = nuevo_nodo;
-}							
+}	
 
 void depositarPilaOriginal(Nodo*& pila, int n)
 {
@@ -258,6 +258,11 @@ int main()
 							arr6[i] = arr[i];
 						}
 
+						if (reentry == true && change == true)
+						{
+							repetidoDone = false, mostrarOriginalDone = false, parDone = false, imparDone = false, posDone = false, negDone = false;
+						}
+
 						procesoDone = true;
 					}
 
@@ -359,6 +364,8 @@ int main()
 							q = 0;
 							w = dim - 1;
 							temp = 0;
+							l = 0;
+							
 
 							while (q < w)								//Proceso para invertir array
 							{
@@ -792,14 +799,38 @@ int main()
 			}
 			else
 			{
-				pila = NULL;
-				pilatemp = NULL;
-				pilatemp2 = NULL;
-				pila2 = NULL;
-				pila3 = NULL;
-				pila4 = NULL;
-				pila5 = NULL;
-				pila6 = NULL;
+				if (pila != NULL)
+				{
+					eliminarNodo(pila, n);
+				}
+				if (pilatemp != NULL)
+				{
+					eliminarNodo(pilatemp, n);
+				}
+				if (pilatemp2 != NULL)
+				{
+					eliminarNodo(pilatemp2, n);
+				}
+				if (pila2 != NULL)
+				{
+					eliminarNodo(pila2, n);
+				}
+				if (pila3 != NULL)
+				{
+					eliminarNodo(pila3, n);
+				}
+				if (pila4 != NULL)
+				{
+					eliminarNodo(pila4, n);
+				}
+				if (pila5 != NULL)
+				{
+					eliminarNodo(pila5, n);
+				}
+				if (pila6 != NULL)
+				{
+					eliminarNodo(pila6, n);
+				}
 				dim = 0, dim2 = 0, dim3 = 0, dim4 = 0, dim5 = 0, dim6 = 0, dim_aux = 0, dim_aux3 = 0, dim_aux4 = 0, dim_aux5 = 0, dim_aux6 = 0;
 				change = true;
 
