@@ -159,17 +159,17 @@ int main()
 	Nodo* pila4 = NULL;
 	Nodo* pila5 = NULL;
 	Nodo* pila6 = NULL;
-	int* arr = new int[dim];			//Array pila original
-	int* arr2 = new int[dim2];			//Array para no repetidos
-	int* arr_aux2 = new int[dim_aux];	//Array auxiliar para no repetidos
-	int* arr3 = new int[dim3];			//Array para pares
-	int* arr_aux3 = new int[dim_aux];	//Array auxiliar para pares
-	int* arr4 = new int[dim4];			//Array para impares
-	int* arr_aux4 = new int[dim_aux];	//Array auxiliar para impares
-	int* arr5 = new int[dim5];			//Array para positivos
-	int* arr_aux5 = new int[dim_aux];	//Array auxiliar para positivos
-	int* arr6 = new int[dim6];			//Array para negativos
-	int* arr_aux6 = new int[dim_aux];	//Array auxiliar para negativos
+	int* arr = new int[dim];				//Array pila original
+	int* arr2 = new int[dim2];				//Array para no repetidos
+	int* arr_aux2 = new int[dim_aux];		//Array auxiliar para no repetidos
+	int* arr3 = new int[dim3];				//Array para pares
+	int* arr_aux3 = new int[dim_aux];		//Array auxiliar para pares
+	int* arr4 = new int[dim4];				//Array para impares
+	int* arr_aux4 = new int[dim_aux];		//Array auxiliar para impares
+	int* arr5 = new int[dim5];				//Array para positivos
+	int* arr_aux5 = new int[dim_aux];		//Array auxiliar para positivos
+	int* arr6 = new int[dim6];				//Array para negativos
+	int* arr_aux6 = new int[dim_aux];		//Array auxiliar para negativos
 
 	do
 	{
