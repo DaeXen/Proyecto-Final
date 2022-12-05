@@ -7,7 +7,11 @@
 
 using namespace std;
 
-int x, y, n, dim = 0, j, k, l = 0, dim2 = 0, q = 0;
+int x, y, n, dim = 0, dim2 = 0, dim3 = 0, dim4 = 0, dim5 = 0, dim6 = 0;
+int j, k, l = 0;															//Variables para pasar a array dedicado
+int q = 0, w, temp = 0;														//Variables para invertir array
+bool repetidoDone = false, mostrarOriginalDone = false,
+parDone = false, imparDone = false, posDone = false, negDone = false, finish = false;
 
 struct Nodo {
 	int dato;
@@ -23,6 +27,14 @@ void agregarPila(Nodo*& pila, int n) {
 }
 
 void pilaTemporal(Nodo*& pila, int n)
+{
+	Nodo* temporal = new Nodo();
+	temporal->dato = n;
+	temporal->siguiente = pila;
+	pila = temporal;
+}
+
+void pilaNoRepetidos(Nodo*& pila, int n)
 {
 	Nodo* temporal = new Nodo();
 	temporal->dato = n;
@@ -52,7 +64,74 @@ void mostrarPilaTemporal(Nodo*& pila, int& n)
 	pila = mostrar2->siguiente;
 }
 
+void pilaOriginal(Nodo*& pila, int& n)
+{
+	Nodo* mostrar = pila;
+	n = mostrar->dato;
+	pila = mostrar->siguiente;
+}
+
 void noRepetidos(Nodo*& pila, int& n)
+{
+	Nodo* mostrar = pila;
+	n = mostrar->dato;
+	pila = mostrar->siguiente;
+}
+
+void pilaNumPar(Nodo*& pila, int n)
+{
+	Nodo* temporal = new Nodo();
+	temporal->dato = n;
+	temporal->siguiente = pila;
+	pila = temporal;
+}
+
+void mostrarPilaNumPar(Nodo*& pila, int& n)
+{
+	Nodo* mostrar = pila;
+	n = mostrar->dato;
+	pila = mostrar->siguiente;
+}
+
+void pilaNumImpar(Nodo*& pila, int n)
+{
+	Nodo* temporal = new Nodo();
+	temporal->dato = n;
+	temporal->siguiente = pila;
+	pila = temporal;
+}
+
+void mostrarPilaNumImpar(Nodo*& pila, int& n)
+{
+	Nodo* mostrar = pila;
+	n = mostrar->dato;
+	pila = mostrar->siguiente;
+}
+
+void pilaNumPos(Nodo*& pila, int n)
+{
+	Nodo* temporal = new Nodo();
+	temporal->dato = n;
+	temporal->siguiente = pila;
+	pila = temporal;
+}
+
+void mostrarPilaNumPos(Nodo*& pila, int& n)
+{
+	Nodo* mostrar = pila;
+	n = mostrar->dato;
+	pila = mostrar->siguiente;
+}
+
+void pilaNumNeg(Nodo*& pila, int n)
+{
+	Nodo* temporal = new Nodo();
+	temporal->dato = n;
+	temporal->siguiente = pila;
+	pila = temporal;
+}
+
+void mostrarPilaNumNeg(Nodo*& pila, int& n)
 {
 	Nodo* mostrar = pila;
 	n = mostrar->dato;
@@ -63,9 +142,22 @@ int main()
 {
 	Nodo* pila = NULL;
 	Nodo* pila2 = NULL;
-	int* arr = new int[dim];
-	int* arr2 = new int[dim2];
-	int* arr3 = new int[dim2];
+	Nodo* pila3 = NULL;
+	Nodo* pila4 = NULL;
+	Nodo* pila5 = NULL;
+	Nodo* pila6 = NULL;
+	int* arr = new int[dim];			//Arrray pila original
+	//arr = 0;
+	int* arr2 = new int[dim2];			//Array para no repetidos
+	//arr2 = 0;
+	int* arr3 = new int[dim3];			//Array para pares
+	//arr3 = 0;
+	int* arr4 = new int[dim4];			//Array para impares
+	//arr4 = 0;
+	int* arr5 = new int[dim5];			//Array para positivos
+	//arr5 = 0;
+	int* arr6 = new int[dim6];			//Array para negativos
+	//arr6 = 0;
 
 	do
 	{
@@ -85,7 +177,6 @@ int main()
 			cout << "Digite un numero" << endl;
 			cin >> n;
 			agregarPila(pila, n);
-			//pilaTemporal(pila2, n);
 			dim = dim + 1;
 			system("pause");
 			break;
@@ -106,6 +197,7 @@ int main()
 			break;
 
 		case 3:
+			repetidoDone = false, mostrarOriginalDone = false, parDone = false, imparDone = false, posDone = false, negDone = false, finish = false;
 			if (pila == NULL)
 			{
 				cout << "ERROR. AL MENOS DEBE HABER UN NODO" << endl;
@@ -124,8 +216,11 @@ int main()
 					{
 					case 1:
 						cout << "ELIGIO VER PILA ORIGINAL" << endl;
-						while (pila != NULL)
+
+						if (mostrarOriginalDone == true)
 						{
+							while (pila != NULL)							//Mostrar pila
+							{
 							mostrarPilaOriginal(pila, n);
 
 							if (pila != NULL)
@@ -137,14 +232,96 @@ int main()
 								cout << n << "." << endl;
 							}
 						}
+
+							for (int i = 0; i < dim; i++)					//Depositar array en pila
+							{
+								depositarPilaOriginal(pila, arr[i]);
+							}
+						}
+						else
+						{
+							q = 0;
+							w = dim - 1;
+							temp = 0;
+
+							while (pila != NULL)						//Proceso de depositar pila en array
+							{
+								for (int i = 0; i < dim; i++)
+								{
+									pilaOriginal(pila, n);
+									arr[i] = n;
+								}
+							}
+
+							while (q < w)								//Proceso para invertir array
+							{
+								temp = arr[q];
+								arr[q] = arr[w];
+								arr[w] = temp;
+
+								q++;
+								w--;
+							}
+
+							for (int i = 0; i < dim; i++)					//Depositar array en pila
+							{
+								depositarPilaOriginal(pila, arr[i]);
+							}
+
+							while (pila != NULL)							//Mostrar pila
+							{
+								mostrarPilaOriginal(pila, n);
+
+								if (pila != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim; i++)					//Depositar array en pila
+							{
+								depositarPilaOriginal(pila, arr[i]);
+							}
+
+							mostrarOriginalDone = true;
+						}
 						system("pause");
 						break;
 
 					case 2:
 						cout << "ELIGIO VER PILA SIN NUMEROS REPETIDOS" << endl;
-						dim2 = dim;
 
-						while (pila != NULL)
+						if (repetidoDone == true)
+						{
+							while (pila2 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNoRepetidos(pila2, n);
+
+								if (pila2 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim2; i++)					//Volver a depositar array en pila
+							{
+								pilaNoRepetidos(pila2, arr2[i]);
+							}
+						}
+						else
+						{
+						dim2 = dim;
+							w = dim - 1;
+
+							while (pila != NULL)						//Proceso de depositar pila en array
 						{
 							for (int i = 0; i < dim; i++)
 							{
@@ -153,12 +330,17 @@ int main()
 							}
 						}
 
-						for (int i = 0; i < dim; i++)
+							while (q < w)								//Proceso para invertir array
 						{
-							cout << arr[i];
+								temp = arr[q];
+								arr[q] = arr[w];
+								arr[w] = temp;
+
+								q++;
+								w--;
 						}
 
-						for (j = 0; j < dim; j++)
+							for (j = 0; j < dim; j++)					//Proceso para eliminar repetidos
 						{
 							for (k = 0; k < l; k++)
 							{
