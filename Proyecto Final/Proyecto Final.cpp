@@ -780,6 +780,7 @@ int main()
 
 					case 7:
 						reentry = true;
+						change = false;
 						break;
 
 					default:
