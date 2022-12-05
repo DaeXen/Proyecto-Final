@@ -26,7 +26,7 @@ void agregarPila(Nodo*& pila, int n) {
 	cout << "\nElemento " << n << " agregado exitosamente" << endl;
 }
 
-void pilaTemporal(Nodo*& pila, int n)
+void depositarPilaOriginal(Nodo*& pila, int n)
 {
 	Nodo* temporal = new Nodo();
 	temporal->dato = n;
@@ -57,7 +57,7 @@ void mostrarPilaOriginal(Nodo*& pila, int& n)
 	pila = mostrar->siguiente;
 }
 
-void mostrarPilaTemporal(Nodo*& pila, int& n)
+void mostrarPilaNoRepetidos(Nodo*& pila, int& n)
 {
 	Nodo* mostrar2 = pila;
 	n = mostrar2->dato;
@@ -221,17 +221,17 @@ int main()
 						{
 							while (pila != NULL)							//Mostrar pila
 							{
-							mostrarPilaOriginal(pila, n);
+								mostrarPilaOriginal(pila, n);
 
-							if (pila != NULL)
-							{
-								cout << n << ",";
+								if (pila != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
 							}
-							else
-							{
-								cout << n << "." << endl;
-							}
-						}
 
 							for (int i = 0; i < dim; i++)					//Depositar array en pila
 							{
@@ -318,105 +318,435 @@ int main()
 						}
 						else
 						{
-						dim2 = dim;
+							dim2 = dim;
 							w = dim - 1;
 
 							while (pila != NULL)						//Proceso de depositar pila en array
-						{
-							for (int i = 0; i < dim; i++)
 							{
-								noRepetidos(pila, n);
-								arr[i] = n;
+								for (int i = 0; i < dim; i++)
+								{
+									noRepetidos(pila, n);
+									arr[i] = n;
+								}
 							}
-						}
 
 							while (q < w)								//Proceso para invertir array
-						{
+							{
 								temp = arr[q];
 								arr[q] = arr[w];
 								arr[w] = temp;
 
 								q++;
 								w--;
-						}
+							}
 
 							for (j = 0; j < dim; j++)					//Proceso para eliminar repetidos
-						{
-							for (k = 0; k < l; k++)
 							{
-								if (arr[j] == arr2[k])
+								for (k = 0; k < l; k++)
 								{
-									dim2 = dim2 - 1;
-									break;
+									if (arr[j] == arr2[k])
+									{
+										dim2 = dim2 - 1;
+										break;
+									}
+								}
+
+								if (k == l)
+								{
+									arr2[l] = arr[j];
+									l++;
 								}
 							}
 
-							if (k == l)
+							for (int i = 0; i < dim2; i++)					//Depositar array en pila
 							{
-								arr2[l] = arr[j];
-								l++;
+								pilaNoRepetidos(pila2, arr2[i]);
 							}
-						}
 
-						cout << "\n" << endl;
-
-						for (int i = 0; i < dim2; i++)
-						{
-							cout << arr2[i];
-						}
-
-						cout << "\n" << endl;
-
-						for (int i = dim2; i > 0; i--)
-						{
-							arr3[dim2-i] = arr2[i];
-						}
-
-						for (int i = 0; i < dim2; i++)
-						{
-							cout << arr3[i];
-						}
-
-						cout << "\n" << endl;
-
-						for (int i = 0; i < dim2; i++)
-						{
-							pilaTemporal(pila2, arr2[i]);
-						}
-
-						while (pila2 != NULL)
-						{
-							mostrarPilaTemporal(pila2, n);
-
-							if (pila2 != NULL)
+							while (pila2 != NULL)							//Mostrar pila
 							{
-								cout << n << ",";
+								mostrarPilaNoRepetidos(pila2, n);
+
+								if (pila2 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
 							}
-							else
+
+							for (int i = 0; i < dim2; i++)					//Volver a depositar array en pila
 							{
-								cout << n << "." << endl;
+								pilaNoRepetidos(pila2, arr2[i]);
 							}
+
+							repetidoDone = true;
 						}
 						system("pause");
 						break;
 
 					case 3:
 						cout << "ELIGIO VER PILA NUMEROS PARES" << endl;
+
+						if (parDone == true)
+						{
+							while (pila3 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumPar(pila3, n);
+
+								if (pila3 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim3; i++)					//Volver a depositar array en pila
+							{
+								pilaNumPar(pila3, arr3[i]);
+							}
+						}
+						else
+						{
+							dim3 = dim;
+							q = 0;
+							w = dim - 1;
+							temp = 0;
+							j = 0;
+
+							while (pila != NULL)						//Proceso de depositar pila en array
+							{
+								for (int i = 0; i < dim; i++)
+								{
+									mostrarPilaNumPar(pila, n);
+									arr[i] = n;
+								}
+							}
+
+							while (q < w)								//Proceso para invertir array
+							{
+								temp = arr[q];
+								arr[q] = arr[w];
+								arr[w] = temp;
+
+								q++;
+								w--;
+							}
+
+							for (int i = 0; i < dim; i++)				//Proceso para separar pares
+							{
+								if (arr[i] % 2 == 0)
+								{
+									arr3[j] = arr[i];
+									dim3 = dim3 - 1;
+									j++;
+								}
+							}
+
+							for (int i = 0; i < dim3; i++)					//Depositar array en pila
+							{
+								pilaNumPar(pila3, arr3[i]);
+							}
+
+							while (pila3 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumPar(pila3, n);
+
+								if (pila3 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim3; i++)					//Volver a depositar array en pila
+							{
+								pilaNumPar(pila3, arr3[i]);
+							}
+
+							parDone = true;
+
+						}
 						system("pause");
 						break;
 
 					case 4:
 						cout << "ELIGIO VER PILA NUMEROS IMPARES" << endl;
+
+						if (imparDone == true)
+						{
+							while (pila4 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumImpar(pila4, n);
+
+								if (pila4 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim4; i++)					//Volver a depositar array en pila
+							{
+								pilaNumImpar(pila4, arr4[i]);
+							}
+						}
+						else
+						{
+							dim4 = dim;
+							q = 0;
+							w = dim - 1;
+							temp = 0;
+							j = 0;
+
+							while (pila != NULL)						//Proceso de depositar pila en array
+							{
+								for (int i = 0; i < dim; i++)
+								{
+									mostrarPilaNumImpar(pila, n);
+									arr[i] = n;
+								}
+							}
+
+							while (q < w)								//Proceso para invertir array
+							{
+								temp = arr[q];
+								arr[q] = arr[w];
+								arr[w] = temp;
+
+								q++;
+								w--;
+							}
+
+							for (int i = 0; i < dim; i++)				//Proceso para separar impares
+							{
+								if (arr[i] % 2 == 1 || arr[i] % 2 == -1)
+								{
+									arr4[j] = arr[i];
+									dim4 = dim4 - 1;
+									j++;
+								}
+							}
+
+							for (int i = 0; i < dim4; i++)					//Depositar array en pila
+							{
+								pilaNumImpar(pila4, arr4[i]);
+							}
+
+							while (pila4 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumImpar(pila4, n);
+
+								if (pila4 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim4; i++)					//Volver a depositar array en pila
+							{
+								pilaNumImpar(pila4, arr4[i]);
+							}
+
+							imparDone = true;
+
+						}
 						system("pause");
 						break;
 
 					case 5:
 						cout << "ELIGIO VER PILA NUMEROS POSITIVOS" << endl;
+
+						if (posDone == true)
+						{
+							while (pila5 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumPos(pila5, n);
+
+								if (pila5 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim5; i++)					//Volver a depositar array en pila
+							{
+								pilaNumPos(pila5, arr5[i]);
+							}
+						}
+						else
+						{
+							dim5 = dim;
+							q = 0;
+							w = dim - 1;
+							temp = 0;
+							j = 0;
+
+							while (pila != NULL)						//Proceso de depositar pila en array
+							{
+								for (int i = 0; i < dim; i++)
+								{
+									mostrarPilaNumPos(pila, n);
+									arr[i] = n;
+								}
+							}
+
+							while (q < w)								//Proceso para invertir array
+							{
+								temp = arr[q];
+								arr[q] = arr[w];
+								arr[w] = temp;
+
+								q++;
+								w--;
+							}
+
+							for (int i = 0; i < dim; i++)				//Proceso para separar positivos
+							{
+								if (arr[i] > 0)
+								{
+									arr5[j] = arr[i];
+									dim5 = dim5 - 1;
+									j++;
+								}
+							}
+
+							for (int i = 0; i < dim5; i++)					//Depositar array en pila
+							{
+								pilaNumPos(pila5, arr5[i]);
+							}
+
+							while (pila5 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumPos(pila5, n);
+
+								if (pila5 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim5; i++)					//Volver a depositar array en pila
+							{
+								pilaNumPos(pila5, arr5[i]);
+							}
+
+							posDone = true;
+
+						}
 						system("pause");
 						break;
 
 					case 6:
 						cout << "ELIGIO VER PILA NUMEROS NEGATIVOS" << endl;
+
+						if (negDone == true)
+						{
+							while (pila6 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumNeg(pila6, n);
+
+								if (pila6 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim6; i++)					//Volver a depositar array en pila
+							{
+								pilaNumNeg(pila6, arr6[i]);
+							}
+						}
+						else
+						{
+							dim6 = dim;
+							q = 0;
+							w = dim - 1;
+							temp = 0;
+							j = 0;
+
+							while (pila != NULL)						//Proceso de depositar pila en array
+							{
+								for (int i = 0; i < dim; i++)
+								{
+									mostrarPilaNumNeg(pila, n);
+									arr[i] = n;
+								}
+							}
+
+							while (q < w)								//Proceso para invertir array
+							{
+								temp = arr[q];
+								arr[q] = arr[w];
+								arr[w] = temp;
+
+								q++;
+								w--;
+							}
+
+							for (int i = 0; i < dim; i++)				//Proceso para separar negativos
+							{
+								if (arr[i] < 0)
+								{
+									arr6[j] = arr[i];
+									dim6 = dim6 - 1;
+									j++;
+								}
+							}
+
+							for (int i = 0; i < dim6; i++)					//Depositar array en pila
+							{
+								pilaNumNeg(pila6, arr6[i]);
+							}
+
+							while (pila6 != NULL)							//Mostrar pila
+							{
+								mostrarPilaNumNeg(pila6, n);
+
+								if (pila6 != NULL)
+								{
+									cout << n << ",";
+								}
+								else
+								{
+									cout << n << "." << endl;
+								}
+							}
+
+							for (int i = 0; i < dim6; i++)					//Volver a depositar array en pila
+							{
+								pilaNumNeg(pila6, arr6[i]);
+							}
+
+							negDone = true;
+						}
 						system("pause");
 						break;
 
@@ -434,11 +764,57 @@ int main()
 			break;
 
 		case 4:
-			cout << "ELIGIO ELIMINAR TODA LA PILA";
+			if (pila == NULL)
+			{
+				cout << "ERROR. DEBE EXISTIR AL MENOS UNA PILA" << endl;
+			}
+			else
+			{
+				if (pila != NULL)
+				{
+					pila = NULL;
+					cout << "ELIGIO ELIMINAR LA PILA ORIGINAL" << endl;
+				}
+				if (pila2 != NULL)
+				{
+					pila2 = NULL;
+					cout << "ELIGIO ELIMINAR LA PILA ORIGINAL" << endl;
+				}
+				if (pila3 != NULL)
+				{
+					pila3 = NULL;
+					cout << "ELIGIO ELIMINAR LA PILA ORIGINAL" << endl;
+				}
+				if (pila4 != NULL)
+				{
+					pila4 = NULL;
+					cout << "ELIGIO ELIMINAR LA PILA ORIGINAL" << endl;
+				}
+				if (pila5 != NULL)
+				{
+					pila5 = NULL;
+					cout << "ELIGIO ELIMINAR LA PILA ORIGINAL" << endl;
+				}
+				if (pila6 != NULL)
+				{
+					pila6 = NULL;
+					cout << "ELIGIO ELIMINAR LA PILA ORIGINAL" << endl;
+				}
+			}
+			system("pause");
 			break;
 
 		case 5:
-			cout << "ELIGIO SALIR. HASTA LUEGO" << endl;
+			if (pila != NULL || pila2 != NULL || pila3 != NULL || pila4 != NULL || pila5 != NULL || pila6 != NULL)
+			{
+				cout << "ERROR. DEBE ELIMINAR TODAS LA PILAS" << endl;
+			}
+			else
+			{
+				cout << "ELIGIO SALIR. HASTA LUEGO" << endl;
+				finish = true;
+			}
+			system("pause");
 			break;
 
 		default:
@@ -446,7 +822,7 @@ int main()
 			system("pause");
 			break;
 		}
-	} while (x != 5);
+	} while (finish != true);
 
 	return 0;
 }
