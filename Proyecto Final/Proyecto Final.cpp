@@ -14,8 +14,8 @@ int j, k, l = 0;																		//Variables para pasar a array dedicado
 int q = 0, w, temp = 0;																	//Variables para invertir array
 
 bool repetidoDone = false, mostrarOriginalDone = false,
-parDone = false, imparDone = false, posDone = false, negDone = false, 
-finish = false, reentry = false, procesoDone = false;
+parDone = false, imparDone = false, posDone = false, negDone = false,
+finish = false, reentry = false, procesoDone = false, change = false;
 
 struct Nodo {
 	int dato;
@@ -191,6 +191,12 @@ int main()
 			agregarPila(pila, n);
 			agregarPila2(pilatemp, n);
 			dim = dim + 1;
+
+			if (reentry == true && change == true)
+			{
+				procesoDone = false;
+			}
+
 			system("pause");
 			break;
 
@@ -206,16 +212,12 @@ int main()
 				eliminarNodo(pila, n);
 				eliminarNodo(pilatemp, n);
 				cout << "Nodo eliminado" << endl;
+				change = true;
 			}
 			system("pause");
 			break;
 
 		case 3:
-
-			/*if (reentry != true)
-			{
-				repetidoDone = false, mostrarOriginalDone = false, parDone = false, imparDone = false, posDone = false, negDone = false, finish = false;
-			}*/
 			
 			if (pila == NULL)
 			{
@@ -799,6 +801,7 @@ int main()
 				pila5 = NULL;
 				pila6 = NULL;
 				dim = 0, dim2 = 0, dim3 = 0, dim4 = 0, dim5 = 0, dim6 = 0, dim_aux = 0, dim_aux3 = 0, dim_aux4 = 0, dim_aux5 = 0, dim_aux6 = 0;
+				change = true;
 
 				cout << "ELIMINO TODAS LAS PILAS" << endl;
 			}
