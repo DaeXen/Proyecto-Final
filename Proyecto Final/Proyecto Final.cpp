@@ -7,11 +7,15 @@
 
 using namespace std;
 
-int x, y, n, dim = 0, dim2 = 0, dim3 = 0, dim4 = 0, dim5 = 0, dim6 = 0, dim_aux = 0, dim_aux3 = 0, dim_aux4 = 0, dim_aux5 = 0, dim_aux6 = 0;
+int x, y, n, dim = 0, dim2 = 0, dim3 = 0, dim4 = 0, dim5 = 0, dim6 = 0, 
+dim_aux = 0, dim_aux3 = 0, dim_aux4 = 0, dim_aux5 = 0, dim_aux6 = 0;
+
 int j, k, l = 0;																		//Variables para pasar a array dedicado
 int q = 0, w, temp = 0;																	//Variables para invertir array
+
 bool repetidoDone = false, mostrarOriginalDone = false,
-parDone = false, imparDone = false, posDone = false, negDone = false, finish = false, reentry = false, procesoDone = false;
+parDone = false, imparDone = false, posDone = false, negDone = false, 
+finish = false, reentry = false, procesoDone = false;
 
 struct Nodo {
 	int dato;
@@ -24,14 +28,14 @@ void agregarPila(Nodo*& pila, int n) {
 	nuevo_nodo->siguiente = pila;
 	pila = nuevo_nodo;
 	cout << "\nElemento " << n << " agregado exitosamente" << endl;
-}
+}		
 
 void agregarPila2(Nodo*& pila, int n) {
 	Nodo* nuevo_nodo = new Nodo();
 	nuevo_nodo->dato = n;
 	nuevo_nodo->siguiente = pila;
 	pila = nuevo_nodo;
-}
+}							
 
 void depositarPilaOriginal(Nodo*& pila, int n)
 {
@@ -155,7 +159,7 @@ int main()
 	Nodo* pila4 = NULL;
 	Nodo* pila5 = NULL;
 	Nodo* pila6 = NULL;
-	int* arr = new int[dim];			//Arrray pila original
+	int* arr = new int[dim];			//Array pila original
 	int* arr2 = new int[dim2];			//Array para no repetidos
 	int* arr_aux2 = new int[dim_aux];	//Array auxiliar para no repetidos
 	int* arr3 = new int[dim3];			//Array para pares
@@ -800,7 +804,7 @@ int main()
 			}
 			system("pause");
 			break;
-
+			
 		case 5:
 			if (pila != NULL || pila2 != NULL || pila3 != NULL || pila4 != NULL || pila5 != NULL || pila6 != NULL)
 			{
