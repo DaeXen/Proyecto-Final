@@ -799,35 +799,35 @@ int main()
 			}
 			else
 			{													//else para eliminar todas las pilas
-				if (pila != NULL)
+				while (pila != NULL)
 				{
 					eliminarNodo(pila, n);
 				}
-				if (pilatemp != NULL)
+				while (pilatemp != NULL)
 				{
 					eliminarNodo(pilatemp, n);
 				}
-				if (pilatemp2 != NULL)
+				while (pilatemp2 != NULL)
 				{
 					eliminarNodo(pilatemp2, n);
 				}
-				if (pila2 != NULL)
+				while (pila2 != NULL)
 				{
 					eliminarNodo(pila2, n);
 				}
-				if (pila3 != NULL)
+				while (pila3 != NULL)
 				{
 					eliminarNodo(pila3, n);
 				}
-				if (pila4 != NULL)
+				while (pila4 != NULL)
 				{
 					eliminarNodo(pila4, n);
 				}
-				if (pila5 != NULL)
+				while (pila5 != NULL)
 				{
 					eliminarNodo(pila5, n);
 				}
-				if (pila6 != NULL)
+				while (pila6 != NULL)
 				{
 					eliminarNodo(pila6, n);
 				}
@@ -840,7 +840,7 @@ int main()
 			break;
 			
 		case 5:
-			if (pila != NULL || pila2 != NULL || pila3 != NULL || pila4 != NULL || pila5 != NULL || pila6 != NULL)			//Si alguna pila tiene informacion enotnces no se puede salir el menu
+			if (pila != NULL || pilatemp != NULL || pilatemp2 != NULL || pila2 != NULL || pila3 != NULL || pila4 != NULL || pila5 != NULL || pila6 != NULL)			//Si alguna pila tiene informacion enotnces no se puede salir el menu
 			{
 				cout << "ERROR. DEBE ELIMINAR TODAS LA PILAS" << endl;
 			}
