@@ -338,7 +338,7 @@ int main()
 
 						if (repetidoDone == true)								//Si ya se realizo el proceso de general la pila entonces se hace un procedimiento 
 						{														//de solo volver a depositar el array ya generado en la pila y se muestra
-							for (int i = 0; i < dim_aux; i++)					//Volver a depositar array en pila
+							for (int i = 0; i < dim_aux; i++)				//Volver a depositar array en pila
 							{
 								pilaNoRepetidos(pila2, arr_aux2[i]);
 							}
@@ -378,8 +378,8 @@ int main()
 
 							for (j = 0; j < dim2; j++)					//Proceso para eliminar repetidos
 							{
-								for (k = 0; k < l; k++)
-								{
+								for (k = 0; k < l; k++)					//Es un proceso de donde si detecta un elemento repetido interrumpe el ciclo y continua
+								{										//al siguiente elemento
 									if (arr2[j] == arr_aux2[k])
 									{
 										dim_aux = dim_aux - 1;
@@ -467,8 +467,8 @@ int main()
 
 							for (int i = 0; i < dim3; i++)				//Proceso para separar pares
 							{
-								if (arr3[i] % 2 == 0)
-								{
+								if (arr3[i] % 2 == 0)					//Si detecta que el residuo de un elemento es igual a 0 entonces este va a ser depositado
+								{										//en otro array y si no detecta uno con residuo igual a cero entonces este es impar y va a disminuir la dimension del array ya que no se depositara en este
 									arr_aux3[j] = arr3[i];
 									j++;
 								}
@@ -557,8 +557,8 @@ int main()
 
 							for (int i = 0; i < dim4; i++)				//Proceso para separar impares
 							{
-								if (arr4[i] % 2 == 1 || arr4[i] % 2 == -1)
-								{
+								if (arr4[i] % 2 == 1 || arr4[i] % 2 == -1)				//Mismo procedimiento al anterior pero ahora si detecta que el residuo es
+								{														//1 o -1 entonces el elmento es depositado 
 									arr_aux4[j] = arr4[i];
 									j++;
 								}
@@ -647,7 +647,7 @@ int main()
 
 							for (int i = 0; i < dim5; i++)				//Proceso para separar positivos
 							{
-								if (arr5[i] > 0)
+								if (arr5[i] > 0)						//Si el elemento es mayor a 0 entonces este es positivo y se desposita
 								{
 									arr_aux5[j] = arr5[i];
 									j++;
@@ -737,7 +737,7 @@ int main()
 
 							for (int i = 0; i < dim6; i++)				//Proceso para separar negativos
 							{
-								if (arr6[i] < 0)
+								if (arr6[i] < 0)						//Mismo procedimiento al anterior pero ahora si el elemento es menor a 0 este se deposita
 								{
 									arr_aux6[j] = arr6[i];
 									j++;
@@ -778,8 +778,8 @@ int main()
 						break;
 
 					case 7:
-						reentry = true;
-						change = false;
+						reentry = true;					//Si se elije la opcion 7 para salir entonces se hace verdadera reentry para verificar cambios despues
+						change = false;					//Change regresa a ser falso para que no afecte el procedimiento y se ejecute
 						break;
 
 					default:
@@ -798,7 +798,7 @@ int main()
 				cout << "ERROR. DEBE EXISTIR AL MENOS UNA PILA" << endl;
 			}
 			else
-			{
+			{													//else para eliminar todas las pilas
 				if (pila != NULL)
 				{
 					eliminarNodo(pila, n);
@@ -831,8 +831,8 @@ int main()
 				{
 					eliminarNodo(pila6, n);
 				}
-				dim = 0, dim2 = 0, dim3 = 0, dim4 = 0, dim5 = 0, dim6 = 0, dim_aux = 0, dim_aux3 = 0, dim_aux4 = 0, dim_aux5 = 0, dim_aux6 = 0;
-				change = true;
+				dim = 0, dim2 = 0, dim3 = 0, dim4 = 0, dim5 = 0, dim6 = 0, dim_aux = 0, dim_aux3 = 0, dim_aux4 = 0, dim_aux5 = 0, dim_aux6 = 0;		//las dimensiones se regresan a 0
+				change = true;				//Se realizo un cambio a las pilas enotnces change es verdadero
 
 				cout << "ELIMINO TODAS LAS PILAS" << endl;
 			}
@@ -840,14 +840,14 @@ int main()
 			break;
 			
 		case 5:
-			if (pila != NULL || pila2 != NULL || pila3 != NULL || pila4 != NULL || pila5 != NULL || pila6 != NULL)
+			if (pila != NULL || pila2 != NULL || pila3 != NULL || pila4 != NULL || pila5 != NULL || pila6 != NULL)			//Si alguna pila tiene informacion enotnces no se puede salir el menu
 			{
 				cout << "ERROR. DEBE ELIMINAR TODAS LA PILAS" << endl;
 			}
 			else
 			{
 				cout << "ELIGIO SALIR. HASTA LUEGO" << endl;
-				finish = true;
+				finish = true;											//bool para salir del switch case y terminar el programa
 			}
 			system("pause");
 			break;
