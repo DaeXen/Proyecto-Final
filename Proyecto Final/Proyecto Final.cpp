@@ -272,7 +272,7 @@ int main()
 					case 1:
 						cout << "ELIGIO VER PILA ORIGINAL" << endl;
 
-						if (mostrarOriginalDone == true)					//Si ya se realizo el proceso de general la pila entonces se hace un procedimiento 
+						if (mostrarOriginalDone == true)					//Si ya se realizo el proceso de generar la pila entonces se hace un procedimiento 
 						{													//de solo volver a depositar el array ya generado en la pila y se muestra
 							for (int i = 0; i < dim; i++)			//Depositar array en pila
 							{
